@@ -45,17 +45,17 @@ Route::get('/tasks{param}', function($param) use ($tasklist){
     return $tasklist[$param];
 });
 
-Route::get('/tasks', function() use ($tasklist){
-    $tasklist[request() -> label] = request()->task;
+Route::get('/tasks/{key}', function($key) use ($tasklist){
+    $tasklist[request() -> key] = request()->task;
     return $tasklist;
 });
 
-Route::patch('/tasks', function() use ($tasklist){
+Route::patch('/tasks/{key}', function($key) use ($tasklist){
     $tasklist[request()->key] = request()->task;
     return $tasklist;
 });
 
-Route::delete('/tasks/{$key}', function($key) use ($tasklist){
-    unset($tasklist[$key]);
+Route::delete('/tasks/{key}', function($key) use ($tasklist) {
+    unset($taskList[$key]);
     return $tasklist;
 });
