@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,15 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-$tasklist = [
-    'first' => 'sleep',
-    'second' => 'work',
-    'third' => 'play'
-];
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('tes', function () {
     return view('tes');
@@ -33,29 +27,27 @@ Route::get('/hello', function () {
     ]);
 });
 
-Route::get('/tasks', function() use ($tasklist){
-    if (request() -> search) {
-        return $tasklist[request()->search];
-    } else {
-        return $tasklist;
-    }
-});
+Route::get('/tasks', [TaskController::class, 'index']);
+Route::get('/tasks{id}', [TaskController::class, 'show']);
+Route::post('/tasks', [TaskController::class, 'store']);
+Route::patch('/tasks/{id}', [TaskController::class, 'update']);
+Route::delete('/tasks/{id}', [TaskController::class, 'delete']);
 
-Route::get('/tasks{param}', function($param) use ($tasklist){
-    return $tasklist[$param];
-});
+// Route::get('/tasks/{key}', function($key) use ($tasklist){
+//     $tasklist[request() -> key] = request()->task;
+//     return $tasklist;
+// });
 
-Route::get('/tasks/{key}', function($key) use ($tasklist){
-    $tasklist[request() -> key] = request()->task;
-    return $tasklist;
-});
+// Route::patch('/tasks/{key}', function($key) use ($tasklist){
+//     $tasklist[request()->key] = request()->task;
+//     return $tasklist;
+// });
 
-Route::patch('/tasks/{key}', function($key) use ($tasklist){
-    $tasklist[request()->key] = request()->task;
-    return $tasklist;
-});
 
-Route::delete('/tasks/{key}', function($key) use ($tasklist) {
-    unset($taskList[$key]);
-    return $tasklist;
-});
+
+
+// Route::post('/tasks/{key}', function($key) use ($taskList){
+//     //return request()->all();
+//     $taskList[request()->key] = request()->task;
+//     return $taskList;
+// }); store
