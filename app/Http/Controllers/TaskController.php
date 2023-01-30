@@ -3,33 +3,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Tasks;
 
 class TaskController extends Controller
-{ 
-    private $tasklist = [
-        'first' => 'sleep',
-        'second' => 'work',
-        'third' => 'play'
-    ];
+{
 
     public function index(Request $request){
-        // if (request() -> search) {
-        //     return $this -> tasklist[$request->search];
-        // }
-
-        // return $this -> tasklist;
         if ($request -> search) {
-            $task = DB::table('tasks')->where('task', 'LIKE', "%request->search%");
+            $task = Tasks::where('task', 'LIKE', "%$request->search%")->get();
+            return $task;
         }
 
-        $task = DB::table('tasks')->get();
+        $task = Tasks::all();
         return $task;
     }
 
     public function show($id) {
         // return $this -> tasklist($param);
-        $task = DB::table('tasks')->where('id', $id)->get();
-
+        $task = Tasks::find($id);
         return $task;
 
     }
@@ -38,7 +29,7 @@ class TaskController extends Controller
         // $this-> tasklist[request()->key] = $request->task;
         // return $this->tasklist;
 
-        DB::table('tasks')->insert([
+        Tasks::create([
             'task' => $request->task,
             'user' => $request->user
         ]);
@@ -49,19 +40,16 @@ class TaskController extends Controller
         // $this-> tasklist[request()->key] = $request->task;
         // return $this->tasklist;
 
-        $task = DB::table('tasks')->where('id', $id)->update([
+        $task = Tasks::find($id);
+        $task->update([
             'task' => $request->task,
             'user' => $request->user
         ]);
-        return 'Success';
+        return $task;
     }
 
-    public function delete(Request $request, $id) {
-        // unset($this->tasklist[$key]);
-        // return $this -> tasklist;
-
-        $task = DB::table('tasks')
-        ->where('id', $id)
+    public function delete($id) {
+        $task = Tasks::find($id)
         ->delete();
         return 'Success';
     }
