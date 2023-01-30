@@ -29,25 +29,8 @@ Route::get('/hello', function () {
 
 Route::get('/tasks', [TaskController::class, 'index']);
 Route::get('/tasks{id}', [TaskController::class, 'show']);
+Route::get('/tasks/create', [TaskController::class, 'create']);
 Route::post('/tasks', [TaskController::class, 'store']);
+Route::get('tasks/{id}/edit', [TaskController::class, 'edit']);
 Route::patch('/tasks/{id}', [TaskController::class, 'update']);
 Route::delete('/tasks/{id}', [TaskController::class, 'delete']);
-
-// Route::get('/tasks/{key}', function($key) use ($tasklist){
-//     $tasklist[request() -> key] = request()->task;
-//     return $tasklist;
-// });
-
-// Route::patch('/tasks/{key}', function($key) use ($tasklist){
-//     $tasklist[request()->key] = request()->task;
-//     return $tasklist;
-// });
-
-
-
-
-// Route::post('/tasks/{key}', function($key) use ($taskList){
-//     //return request()->all();
-//     $taskList[request()->key] = request()->task;
-//     return $taskList;
-// }); store
