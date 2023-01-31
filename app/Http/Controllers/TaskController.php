@@ -14,7 +14,7 @@ class TaskController extends Controller
             return $task;
         }
 
-        $task = Tasks::all();
+        $task = Tasks::paginate(4);
         return view('task.index', [
             'data' => $task
         ]);
@@ -39,11 +39,12 @@ class TaskController extends Controller
             'task' => $request->task,
             'user' => $request->user
         ]);
-        return 'Success';
+        return redirect('/tasks');
     }
 
     public function edit($id){
-        return view('task.edit');
+        $task = Tasks::find($id);
+        return view('task.edit', compact('task'));
     }
 
     public function update(Request $request, $id) {
@@ -55,7 +56,7 @@ class TaskController extends Controller
             'task' => $request->task,
             'user' => $request->user
         ]);
-        return $task;
+        return redirect('/tasks');
     }
 
     public function delete($id) {
