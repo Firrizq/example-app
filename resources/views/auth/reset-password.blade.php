@@ -12,7 +12,7 @@
     @endif
     <div class="card">
         <div class="card-body">
-            <form action="{{route('login')}}" method="POST">
+            <form action="{{route('password-update')}}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="" class="form-label">Email</label>
@@ -24,7 +24,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="" class="form-label">Password</label>
+                    <label for="" class="form-label">New Password</label>
                     <input name="password" type="password" class="form-control" value="{{old('password')}}">
                     @error('password')
                         <span class="text-danger">
@@ -32,8 +32,12 @@
                         </span>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-                <a href="{{route('password.request')}}" class="btn btn-link">Forget?</a>
+                <div class="mb-3">
+                    <label for="" class="form-label">Confirm New Password</label>
+                    <input name="password_confirmation" type="password" class="form-control">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Reset Password</button>
             </form>
         </div>
     </div>
