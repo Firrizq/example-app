@@ -12,8 +12,10 @@
     @endif
     <div class="card">
         <div class="card-body">
-            <form action="{{route('password-update')}}" method="POST">
+            <form action="{{route('password.update')}}" method="POST">
                 @csrf
+                <input type="hidden" name="token" value="{{$request -> route('token')}}">
+
                 <div class="mb-3">
                     <label for="" class="form-label">Email</label>
                     <input name="email" type="email" class="form-control" value="{{old('email')}}">
