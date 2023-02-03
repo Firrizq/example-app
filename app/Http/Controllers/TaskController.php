@@ -9,6 +9,11 @@ use App\Models\Tasks;
 class TaskController extends Controller
 {
 
+    public function __construct()
+    {   
+        $this -> middleware('auth');
+    }
+
     public function index(Request $request){
         if ($request -> search) {
             $task = Tasks::where('task', 'LIKE', "%$request->search%")->get();

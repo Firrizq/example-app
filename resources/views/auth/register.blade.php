@@ -47,6 +47,7 @@
                 </div>
                 
                 <button type="submit" class="btn btn-primary">Register</button>
+                <a href="{{route('login')}}" class="btn btn-link">Already have an account?</a>
             </form>
         </div>
     </div>
