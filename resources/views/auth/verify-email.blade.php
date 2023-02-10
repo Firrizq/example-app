@@ -1,6 +1,15 @@
 @extends('layouts.app')
 @section('main')
 <div class="mt-5 mx-auto" style="width: 380px">
+    {{-- @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif --}}
     <div class="card">
         <div class="card-body">
             @if (session('status'))
@@ -9,11 +18,11 @@
                 </div>
             @endif
             
-            Before proceeding, please check your email for verification. Or
+            Before proceeding, please check your email for verification. Or 
             <form action="{{route('verification.send')}}" method="POST" class="d-inline">
             @csrf
             <button class="btn btn-link p-0 m-0 align-baseline" type="submit">
-                {{_(click here to request another)}}
+                {{trans('click here to request another')}}
             </button>
             </form>
 
