@@ -23,7 +23,7 @@
                     <label for="" class="form-label">Task</label>
                     <textarea name="task" class="form-control" id="" rows="3">{{$task->task}}</textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Update!</button>
+                <button type="submit" class="btn btn-primary">Update</button>
             </form>
         </div>
     </div>
