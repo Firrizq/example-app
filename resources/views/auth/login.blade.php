@@ -33,7 +33,7 @@
                     @enderror
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
-                <a href="{{route('password.request')}}" class="btn btn-link">Forget?</a>
+                <a href="{{route('password.request')}}" class="btn btn-link">Lupa Password?</a>
             </form>
         </div>
     </div>
